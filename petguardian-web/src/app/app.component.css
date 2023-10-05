@@ -1,0 +1,26 @@
+/*https://itnext.io/the-ultimate-sidenav-guide-with-angular-resizeable-dynamic-and-toggleable-c42dc057798d*/
+:root {
+    --sidenav-width: 300px;
+}
+
+:host {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.sidenav {
+    height: 100vh;
+    width: var(--sidenav-width);
+    margin:0;
+    background-color: cadetblue;
+
+    box-sizing: border-box;
+}
+
+.content {
+    flex-grow: 1;
+
+    padding: 1rem;
+}
