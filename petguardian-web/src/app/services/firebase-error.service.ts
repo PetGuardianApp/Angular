@@ -25,6 +25,8 @@ export class FirebaseErrorService {
       //Correo Invalido
       case FirebaseCodeErrorEnum.BadEmail:
         return 'Correo Invalido'
+      case FirebaseCodeErrorEnum.InvalidLogin:
+        return 'Credenciales no aceptadas'
       //Default
       default:
         return 'Error imprevisto'

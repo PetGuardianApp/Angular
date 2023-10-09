@@ -1,5 +1,7 @@
 
-
+<div class="wrapper">
+  <div class="body">
+    <img class="logo" src="../../../assets/img/login-person.png" alt="Login">
     <h1>Login</h1>
     <form (ngSubmit)="login()" [formGroup]="loginUser">
         <div class="form-floating mb-3">
@@ -23,3 +25,5 @@
             <button class="btn btn-primary btn-lg" type="submit" [disabled]="loginUser.invalid">Iniciar Sesion</button>
           </div>
     </form>
+  </div>
+</div>

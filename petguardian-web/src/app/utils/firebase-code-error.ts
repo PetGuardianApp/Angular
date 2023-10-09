@@ -4,5 +4,6 @@ export enum FirebaseCodeErrorEnum{
     EmailInUse = 'auth/email-already-in-use',
     WeakPassword = 'auth/weak-password',
     BadEmail = 'auth/invalid-email',
+    InvalidLogin = 'auth/invalid-login-credentials'
 
 }

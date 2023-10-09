@@ -26,7 +26,17 @@ export class LoginComponent {
   }
 
   login(){
-    this.toastr.error("Tontoooooooo","Error");
+    const email = this.loginUser.value.email;
+    const password = this.loginUser.value.password;
+
+    this.afAuth.signInWithEmailAndPassword(email,password).then((user) => { //Realitza login
+      this.router.navigate(['dashboard'])
+      
+    }).catch((error) => {
+      
+      this.toastr.error(this.fireBaseErrorService.firebaseError(error.code),'Error');
+    })
+    
   }
 
 
