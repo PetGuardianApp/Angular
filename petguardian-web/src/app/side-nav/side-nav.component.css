@@ -1,0 +1,11 @@
+:host {
+  height: 100vh;
+  width: var(--sidenav-width);
+
+  box-sizing: border-box;
+
+  position: sticky;
+  top: 0;
+
+  background-color: #2D6F28;
+}
