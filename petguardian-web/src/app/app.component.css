@@ -9,15 +9,8 @@
     flex-direction: row;
 }
 
-.sidenav {
-    height: 100vh;
-    width: var(--sidenav-width);
-    margin:0;
-    background-color: cadetblue;
-
-    box-sizing: border-box;
-}
-
 .content {
     flex-grow: 1;
+    padding: 15px;
+    background-color: rgb(237, 237, 237);
 }

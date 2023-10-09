@@ -11,11 +11,13 @@ a {
 
     padding: 16px;
 
+    background-color: #2D6F28;
+    font-weight: bold;
+    color: #afeebb;
 
     box-sizing: border-box;
 
     text-decoration: none;
-    color: #000;
     border-radius: 0px;
 
     transition: background-color 275ms ease-out;

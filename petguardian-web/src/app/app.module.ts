@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SidenavLinkComponent } from './sidenav-link/sidenav-link.component';
+import { ClientsPageComponent } from './clients-page/clients-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SidenavLinkComponent } from './sidenav-link/sidenav-link.component';
     LoginComponent,
     DashboardComponent,
     SideNavComponent,
-    SidenavLinkComponent
+    SidenavLinkComponent,
+    ClientsPageComponent
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),
