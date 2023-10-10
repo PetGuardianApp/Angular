@@ -1,7 +1,10 @@
 <!--
     https://itnext.io/the-ultimate-sidenav-guide-with-angular-resizeable-dynamic-and-toggleable-c42dc057798d
 -->
-<div>
+
+
+<div *ngIf="isLoggedIn$ | async as isLoggedIn">
+
     <app-sidenav-link routerLink="/">
         <span>Home</span>
     </app-sidenav-link>
