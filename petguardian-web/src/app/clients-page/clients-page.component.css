@@ -1,15 +1,33 @@
-.searchBar{
+.searchBar {
     width: 100%;
     border-radius: 20px;
     padding: 5px;
     border-color: transparent;
-    
-    background-image: url('/assets/img/searchIco.png'); /* Cambia 'ruta_de_tu_imagen.jpg' por la ruta real de tu imagen */
-    background-size: 20px; /* Ajusta el tamaño de la imagen según tus necesidades */
+
+    background-image: url('/assets/img/searchIco.png');
+    /* Cambia 'ruta_de_tu_imagen.jpg' por la ruta real de tu imagen */
+    background-size: 20px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
     background-repeat: no-repeat;
     background-position: right center;
 }
 
-.module{
+.module {
     margin-top: 30px;
+}
+
+.whiteButton {
+    border-color: transparent;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 550px;
+
+    margin-right: 50px;
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.whiteButton img {
+    border-radius: 20px;
 }
