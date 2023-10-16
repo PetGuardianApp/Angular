@@ -23,8 +23,8 @@ export class LoginComponent {
   constructor(private fb:FormBuilder, private afAuth: AngularFireAuth, private router: Router,
      private fireBaseErrorService: FirebaseErrorService, private toastr:ToastrService,private storageService:StorageService){
       this.loginUser = this.fb.group({
-        email: ['',[Validators.required, Validators.email]],
-        password: ['',Validators.required]
+        email: ['yejenot448@ibtrades.com',[Validators.required, Validators.email]],
+        password: ['yejenot448@ibtrades.com',Validators.required]
       })
 
 

@@ -9,19 +9,17 @@ import { Router } from '@angular/router';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent  {
+export class SideNavComponent {
 
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private storageService: StorageService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private storageService: StorageService) {
     this.isLoggedIn$ = this.storageService.isLoggedIn;
-   }
-
-  
-  constructor(private afAuth: AngularFireAuth, private router:Router) {  }
+  }
 
   logout() {
     this.afAuth.signOut().then(() => {
+      this.storageService.isLoggedNext(false);
       this.router.navigate(['/'])
     })
     //setTimeout(() => { }, 500);
