@@ -6,6 +6,7 @@ import { FirebaseErrorService } from '../services/firebase-error.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from '../services/storage.service';
 import { Subscription } from 'rxjs';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent {
 
 
   constructor(private fb:FormBuilder, private afAuth: AngularFireAuth, private router: Router,
-     private fireBaseErrorService: FirebaseErrorService, private toastr:ToastrService,private storageService:StorageService){
+     private fireBaseErrorService: FirebaseErrorService, private toastr:ToastrService,private storageService:StorageService,
+     private apiService:ApiService){
       this.loginUser = this.fb.group({
         email: ['yejenot448@ibtrades.com',[Validators.required, Validators.email]],
         password: ['yejenot448@ibtrades.com',Validators.required]
@@ -32,6 +34,7 @@ export class LoginComponent {
       .subscribe(data => {
         if(data==true){
           this.router.navigate(['dashboard']);
+          
         }
       });
 
