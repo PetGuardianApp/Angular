@@ -9,17 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./clients-page.component.css']
 })
 export class ClientsPageComponent {
-  subscription: Subscription;
 
-  constructor(private storageService: StorageService,
-              private router:Router){
-    this.subscription = this.storageService.isLoggedIn
-      .subscribe(data => {
-        if(data==false){
-          this.router.navigate(['/']);
-        }
-      });
-  }
+
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
       alert('Searching client...');
