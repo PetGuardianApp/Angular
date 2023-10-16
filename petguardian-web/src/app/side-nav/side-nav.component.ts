@@ -16,7 +16,6 @@ export class SideNavComponent  {
 
   constructor(private afAuth: AngularFireAuth, private router:Router,private storageService:StorageService) {
     this.isLoggedIn$ = this.storageService.isLoggedIn;
-
     this.subscription = this.storageService.isLoggedIn
     .subscribe(data => {
       if(data==false){
