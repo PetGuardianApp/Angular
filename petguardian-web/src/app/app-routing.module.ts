@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'appointments', component: AppointmentsComponent},
   {path: 'clients', component: ClientsPageComponent},
-  {path: 'client', component: ClientSinglePageComponent},
+  {path: 'clients/client', component: ClientSinglePageComponent},
 ];
 
 @NgModule({

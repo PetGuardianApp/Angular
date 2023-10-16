@@ -14,7 +14,7 @@ export class ClientsPageComponent {
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
       alert('Searching client...');
-      this.router.navigate(['clients-s'])
+      this.router.navigate(['clients/client'])
     }
   }
 }
