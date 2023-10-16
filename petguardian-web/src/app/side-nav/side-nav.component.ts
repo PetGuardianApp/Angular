@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
@@ -10,20 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent  {
-
+  subscription: Subscription;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private storageService: StorageService) {
-    this.isLoggedIn$ = this.storageService.isLoggedIn;
-   }
 
-  
-  constructor(private afAuth: AngularFireAuth, private router:Router) {  }
+  constructor(private afAuth: AngularFireAuth, private router:Router,private storageService:StorageService) {
+    this.isLoggedIn$ = this.storageService.isLoggedIn;
+
+    this.subscription = this.storageService.isLoggedIn
+    .subscribe(data => {
+      if(data==false){
+        this.router.navigate(['/']);
+      }
+    });
+    }
 
   logout() {
     this.afAuth.signOut().then(() => {
+      this.storageService.isLoggedNext(false);
       this.router.navigate(['/'])
     })
-    //setTimeout(() => { }, 500);
   }
 }

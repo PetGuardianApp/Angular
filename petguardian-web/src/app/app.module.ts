@@ -28,6 +28,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { ClientsPageComponent } from './clients-page/clients-page.component';
+import { HeaderComponent } from './header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ClientsPageComponent } from './clients-page/clients-page.component';
     DashboardComponent,
     SideNavComponent,
     SidenavLinkComponent,
-    ClientsPageComponent
+    ClientsPageComponent,
+    HeaderComponent,
+    
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),

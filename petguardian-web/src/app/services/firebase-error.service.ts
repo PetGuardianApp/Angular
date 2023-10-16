@@ -12,24 +12,24 @@ export class FirebaseErrorService {
     switch(code){
       //Usuario no encontrado
       case FirebaseCodeErrorEnum.UserNotFound:
-        return 'Usuario no existe'
+        return 'User does not exist'
       //Contraseña Incorrecta
       case FirebaseCodeErrorEnum.WrongPassword:
-        return 'Contraseña Incorrecta'
+        return 'Wrong password'
       //Correo existe
       case FirebaseCodeErrorEnum.EmailInUse:
-        return 'El usuario existe'
+        return 'Email already in use'
       //Weak password
       case FirebaseCodeErrorEnum.WeakPassword:
-        return 'Contraseña debil, almenos 6 caracteres'
+        return 'Weak password, use 6 characters at least'
       //Correo Invalido
       case FirebaseCodeErrorEnum.BadEmail:
-        return 'Correo Invalido'
+        return 'Invalid Email'
       case FirebaseCodeErrorEnum.InvalidLogin:
-        return 'Credenciales no aceptadas'
+        return 'Credentials not accepted'
       //Default
       default:
-        return 'Error imprevisto'
+        return 'Unknown error'
     }
 
   }
