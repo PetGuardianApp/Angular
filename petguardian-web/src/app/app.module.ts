@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,6 +27,7 @@ import { ControllerAppointmentsComponent } from './appointments/controller-appoi
 import { VisualAppointmentsComponent } from './appointments/visual-appointments/visual-appointments.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 import { ClientsPageComponent } from './clients-page/clients-page.component';
 import { HeaderComponent } from './header/header.component';
@@ -50,6 +52,7 @@ import { ClientSinglePageComponent } from './client-single-page/client-single-pa
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    HttpClientModule,
     CommonModule,
     FlatpickrModule.forRoot(),
     NgbModalModule,
