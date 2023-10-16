@@ -4,13 +4,12 @@
 
 :host {
     min-height: 100vh;
-
     display: flex;
     flex-direction: row;
 }
 
 .content {
     flex-grow: 1;
-    padding: 15px;
+    padding: 20px;
     background-color: rgb(237, 237, 237);
 }

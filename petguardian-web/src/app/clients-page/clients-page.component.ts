@@ -9,9 +9,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./clients-page.component.css']
 })
 export class ClientsPageComponent { 
+  constructor(private router: Router) { }
+
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
       alert('Searching client...');
+      this.router.navigate(['clients-s'])
     }
   }
 }

@@ -9,20 +9,20 @@ import { Router } from '@angular/router';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent  {
+export class SideNavComponent {
   subscription: Subscription;
   isLoggedIn$: Observable<boolean>;
 
 
-  constructor(private afAuth: AngularFireAuth, private router:Router,private storageService:StorageService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private storageService: StorageService) {
     this.isLoggedIn$ = this.storageService.isLoggedIn;
     this.subscription = this.storageService.isLoggedIn
-    .subscribe(data => {
-      if(data==false){
-        this.router.navigate(['/']);
-      }
-    });
-    }
+      .subscribe(data => {
+        if (data == false) {
+          this.router.navigate(['/']);
+        }
+      });
+  }
 
   logout() {
     this.afAuth.signOut().then(() => {
