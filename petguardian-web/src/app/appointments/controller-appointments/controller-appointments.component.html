@@ -1,1 +1,83 @@
-<p>Controller appointments</p>
+<h3>
+    <strong>Edit Appointments</strong>
+    <button class="button-84-normal float-end" >
+      Add new
+    </button>
+    <button class="button-84-success float-end" style="margin-right: 10px;" >
+      Save
+    </button>
+    <div class="clearfix"></div>
+  </h3>
+  
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Begins</th>
+          <th>Ends</th>
+          <th>Pet</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="event.title"
+              (keyup)="refresh.next()"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [locale]="locale"
+              [(ngModel)]="event.start"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="event.end"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="event.title"
+              (keyup)="refresh.next()"
+            />
+          </td>
+          
+          <td>
+            <button class="button-84-failure"  >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
