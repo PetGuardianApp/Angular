@@ -25,14 +25,15 @@ export class LoginComponent {
      private fireBaseErrorService: FirebaseErrorService, private toastr:ToastrService,private storageService:StorageService,
      private apiService:ApiService){
       this.loginUser = this.fb.group({
-        email: ['yejenot448@ibtrades.com',[Validators.required, Validators.email]],
-        password: ['yejenot448@ibtrades.com',Validators.required]
+        email: ['ramon@mail.com',[Validators.required, Validators.email]],
+        password: ['ramon@mail.com',Validators.required]
       })
 
 
       this.subscription = this.storageService.isLoggedIn
       .subscribe(data => {
         if(data==true){
+          
           this.router.navigate(['dashboard']);
           
         }
@@ -49,7 +50,10 @@ export class LoginComponent {
 
     this.afAuth.signInWithEmailAndPassword(email,password).then((user) => { //Realitza login
       this.storageService.isLoggedNext(true);
-      this.router.navigate(['dashboard'])
+      
+      console.log(this.apiService.getClients(user.user?.uid!));
+      this.router.navigate(['dashboard']);
+
       
     }).catch((error) => {
       
