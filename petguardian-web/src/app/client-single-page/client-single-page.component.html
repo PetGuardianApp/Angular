@@ -1,1 +1,61 @@
-<p>client-single-page works!</p>
+<div>
+    <h1>John Doe</h1>
+</div>
+<div class="module" style="column-count: 2;">
+    <h2>Personal information</h2>
+    <div class="info-container">
+        <div style="column-count:  2;">
+            <div>
+                <label for="clientName"><b>Name:</b></label>
+                <span id="clientName"> John</span><br>
+
+                <label for="clientSName"><b>Surname:</b></label>
+                <span id="clientSName"> Doe</span><br>
+
+                <label for="clientPhone"><b>Phone:</b></label>
+                <span id="clientPhone"> 660322455</span><br>
+            </div>
+            <div>
+                <label for="clientMail"><b>Email:</b></label>
+                <span id="clientMail"> johndoe@mail.com</span><br>
+
+                <label for="clientPhone"><b>Address:</b></label>
+                <span id="clientPhone"> C/ Medellín n69, Albacete, 05423</span><br>
+            </div>
+        </div>
+
+        <div class="module" style="padding-right: 20px;">
+            <h2>Client resume</h2>
+            <p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et
+                condimentum purus, in tincidunt erat. <br><br>
+
+                Sed in suscipit dui. Nulla scelerisque, orci vitae volutpat tincidunt, lectus magna suscipit mauris.
+            </p>
+        </div>
+    </div>
+    <div>
+        <img src="/assets/img/userProfileImage.jpg" style="width: 400px;">
+    </div>
+</div>
+
+<div class="module">
+    <h2>Pets</h2>
+    <div class="image-container" (click)="redirectPetPage($event)">
+        <img src="/assets/img/dogImage1.jpg" alt="Pet">
+        <div class="overlay">
+            <p>Tobby</p>
+        </div>
+    </div>
+    <div class="image-container" (click)="redirectPetPage($event)">
+        <img src="/assets/img/dogImage2.jpg" alt="Pet">
+        <div class="overlay">
+            <p>Rex</p>
+        </div>
+    </div>
+    <div class="image-container" (click)="redirectPetPage($event)">
+        <img src="/assets/img/dogImage3.jpg" alt="Pet">
+        <div class="overlay">
+            <p>Mierdón</p>
+        </div>
+    </div>
+</div>

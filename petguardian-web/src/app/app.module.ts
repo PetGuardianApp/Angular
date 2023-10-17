@@ -32,6 +32,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ClientsPageComponent } from './clients-page/clients-page.component';
 import { HeaderComponent } from './header/header.component';
 import { ClientSinglePageComponent } from './client-single-page/client-single-page.component';
+import { PetSinglePageComponent } from './pet-single-page/pet-single-page.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ClientSinglePageComponent } from './client-single-page/client-single-pa
     ClientsPageComponent,
     HeaderComponent,
     ClientSinglePageComponent,
+    PetSinglePageComponent,
     
   ],
   imports: [ 

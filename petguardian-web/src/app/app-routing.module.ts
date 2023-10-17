@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { ClientsPageComponent } from './clients-page/clients-page.component';
 import { ClientSinglePageComponent } from './client-single-page/client-single-page.component';
+import { PetSinglePageComponent } from './pet-single-page/pet-single-page.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'appointments', component: AppointmentsComponent},
   {path: 'clients', component: ClientsPageComponent},
   {path: 'clients/client', component: ClientSinglePageComponent},
+  {path: 'clients/pet', component: PetSinglePageComponent}
 ];
 
 @NgModule({
