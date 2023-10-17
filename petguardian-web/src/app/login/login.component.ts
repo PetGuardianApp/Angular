@@ -50,8 +50,7 @@ export class LoginComponent {
 
     this.afAuth.signInWithEmailAndPassword(email,password).then((user) => { //Realitza login
       this.storageService.isLoggedNext(true);
-      
-      console.log(this.apiService.getClients(user.user?.uid!));
+      this.storageService.SessionAddStorage("uid", user.user?.uid);
       this.router.navigate(['dashboard']);
 
       

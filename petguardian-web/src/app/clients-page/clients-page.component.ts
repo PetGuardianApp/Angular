@@ -11,11 +11,12 @@ import { ClientModel } from '../models/client.model';
   styleUrls: ['./clients-page.component.css']
 })
 export class ClientsPageComponent {
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(private router: Router, private apiService: ApiService, private storageService: StorageService) {
   }
 
   showData(user: ClientModel[]) {
-
+    var uid = this.storageService.SessionGetStorage("uid");
+    this.apiService.getClients(uid);
   }
 
   onKeyDown(event: KeyboardEvent) {
