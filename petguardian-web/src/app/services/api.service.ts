@@ -11,9 +11,9 @@ import { StorageService } from './storage.service';
 export class ApiService {
   private apiUrl = 'https://petguardian-api.uc.r.appspot.com/'
   private temp!: Observable<ClientModel[]>;
-  constructor( private http: HttpClient, private storageService:StorageService) { 
+  constructor(private http: HttpClient, private storageService: StorageService) {
 
-   }
+  }
 
    getAppointments(uid: string): Promise<AppointmentModel[]> {
     return new Promise((resolve, reject) => {
