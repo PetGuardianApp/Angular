@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClientModel } from '../models/client.model';
+import { AppointmentModel } from '../models/appointment.model';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 
@@ -14,19 +15,35 @@ export class ApiService {
 
    }
 
+   getAppointments(uid: string): Promise<AppointmentModel[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<AppointmentModel[]>(this.apiUrl + 'vet/findAppointments/' + uid)
+        .subscribe(
+          (response: AppointmentModel[]) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
 
 
-   getClients(uid:String){
-   
-    var entrycount = 0;
-    this.http.get<ClientModel[]>(this.apiUrl+'vet/findClients/'+uid).forEach(element => {
-    element.forEach(entry => {
-        this.storageService.SessionAddStorage("client"+entrycount.toString(),entry)
-        entrycount++;
-    })
-   });
 
-  
-   }
+   getClients(uid: string): Promise<ClientModel[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<ClientModel[]>(this.apiUrl + 'vet/findClients/' + uid)
+        .subscribe(
+          (response: ClientModel[]) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
 
 }

@@ -14,7 +14,7 @@ import {
   isSameMonth,
   addHours,
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject, buffer } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -25,6 +25,9 @@ import {
 import { EventColor } from 'calendar-utils';
 import localeEn from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
+import { StorageService } from 'src/app/services/storage.service';
+import { ApiService } from 'src/app/services/api.service';
+import { AppointmentModel } from 'src/app/models/appointment.model';
 
 registerLocaleData(localeEn);
 
@@ -97,9 +100,19 @@ export class VisualAppointmentsComponent {
     },
   ];
 
+  public appointment_list: AppointmentModel[] = [];
+
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService) {
+   
+    var uid = storageService.SessionGetStorage("uid");
+    apiService.getAppointments(uid).then((value) => {
+      this.appointment_list = value;
+      console.log(this.appointment_list);
+    });
+
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
