@@ -10,23 +10,24 @@ import { StorageService } from './storage.service';
 export class ApiService {
   private apiUrl = 'https://petguardian-api.uc.r.appspot.com/'
   private temp!: Observable<ClientModel[]>;
-  constructor( private http: HttpClient, private storageService:StorageService) { 
+  constructor(private http: HttpClient, private storageService: StorageService) {
 
-   }
+  }
 
 
 
-   getClients(uid:String){
-   
-    var entrycount = 0;
-    this.http.get<ClientModel[]>(this.apiUrl+'vet/findClients/'+uid).forEach(element => {
-    element.forEach(entry => {
-        this.storageService.SessionAddStorage("client"+entrycount.toString(),entry)
-        entrycount++;
-    })
-   });
-
-  
-   }
+  getClients(uid: string): Promise<ClientModel[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<ClientModel[]>(this.apiUrl + 'vet/findClients/' + uid)
+        .subscribe(
+          (response: ClientModel[]) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
 
 }
