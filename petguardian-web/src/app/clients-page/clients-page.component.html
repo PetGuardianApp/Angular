@@ -11,39 +11,22 @@
     <h2>Recent clients</h2>
     <table style="margin-right: -20px;">
         <tr>
-            <th>
-                <button class="whiteButton" (click)="redirectClientPage($event)">
+            <th *ngFor="let item of clientsArray">
+                <button class="whiteButton" id="{{item.id}}" (click)="redirectClientPage(item.id)">
                     <div style="column-count: 2;">
                         <div>
                             <img src="/assets/img/userProfileImage.jpg" style="width: 200px;">
                         </div>
                         <div style="text-align: left;">
-                            <p style="font-weight: bold;" id="clientName1"></p>
+                            <p style="font-weight: bold;">{{item.name}} {{item.surnames}}</p>
                             <ul>
-                                <li>Pets: <span id="client1PetsName"></span></li>
-                                <li>Last visit: <span id="client1LastVisit"></span></li>
+                                <li>Email: {{item.email}}</li>
+                                <li>Phone: {{item.phone}}</li>
                               </ul>
                         </div>
                     </div>
                 </button>
-            </th>
-
-            <th>
-                <button class="whiteButton">
-                    <div style="column-count: 2;">
-                        <div>
-                            <img src="/assets/img/userProfileImage.jpg" style="width: 200px;">
-                        </div>
-                        <div style="text-align: left;">
-                            <p style="font-weight: bold;" id="clientName2"></p>
-                            <ul>
-                                <li>Pets: Tobby, Rex, Mierdón</li>
-                                <li>Last visit: 10/11/2023</li>
-                              </ul>
-                        </div>
-                    </div>
-                </button>
-            </th>
+            </th>            
         </tr>
     </table>   
     <br><br><br><br>
