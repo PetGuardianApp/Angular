@@ -1,0 +1,15 @@
+.whiteButton {
+    border-color: transparent;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 480px;
+
+    margin-right: 50px;
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.whiteButton img {
+    border-radius: 20px;
+}

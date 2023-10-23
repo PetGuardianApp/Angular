@@ -13,6 +13,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { environment } from '../enviroments/enviroments';
@@ -33,6 +34,7 @@ import { ClientsPageComponent } from './clients-page/clients-page.component';
 import { HeaderComponent } from './header/header.component';
 import { ClientSinglePageComponent } from './client-single-page/client-single-page.component';
 import { PetSinglePageComponent } from './pet-single-page/pet-single-page.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { PetSinglePageComponent } from './pet-single-page/pet-single-page.compon
     HeaderComponent,
     ClientSinglePageComponent,
     PetSinglePageComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),
@@ -64,6 +67,7 @@ import { PetSinglePageComponent } from './pet-single-page/pet-single-page.compon
     AngularFireDatabaseModule,
     BrowserModule,
     NgApexchartsModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

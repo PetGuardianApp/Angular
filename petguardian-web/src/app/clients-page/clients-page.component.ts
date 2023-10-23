@@ -4,18 +4,21 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { ClientModel } from '../models/client.model';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-clients-page',
   templateUrl: './clients-page.component.html',
-  styleUrls: ['./clients-page.component.css']
+  styleUrls: ['./clients-page.component.css'],
 })
 export class ClientsPageComponent {
   public clientsArray: ClientModel[];
+  public contentIsLoad:boolean;
 
   constructor(private router: Router, private apiService: ApiService, private storageService: StorageService) {
     this.showData();
     this.clientsArray = [];
+    this.contentIsLoad = true;
   }
 
   showData() {
@@ -23,6 +26,7 @@ export class ClientsPageComponent {
 
     this.apiService.getClients(uid).then((clientsArray) => {
       this.clientsArray = clientsArray;
+      this.contentIsLoad = false;
     });
   }
 
