@@ -28,6 +28,7 @@ import { registerLocaleData } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppointmentModel } from 'src/app/models/appointment.model';
+import { AppointmentsService } from 'src/app/services/appointments.service';
 
 registerLocaleData(localeEn);
 
@@ -43,6 +44,14 @@ const colors: Record<string, EventColor> = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
+  },
+  black: {
+    primary: '#000000',
+    secondary: '#000000',
+  },
+  green: {
+    primary: '#2D6F28',
+    secondary: '#2D6F28',
   },
 };
 
@@ -73,46 +82,32 @@ export class VisualAppointmentsComponent {
   refresh = new Subject<void>();
 
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: { ...colors['red'] },
-      allDay: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: { ...colors['yellow'] },
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: { ...colors['blue'] },
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: { ...colors['yellow'] },
-    },
+    
   ];
 
-  public appointment_list: AppointmentModel[] = [];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService) {
-   
-    var uid = storageService.SessionGetStorage("uid");
-    apiService.getAppointments(uid).then((value) => {
-      this.appointment_list = value;
-      console.log(this.appointment_list);
-    });
+  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, private appointmentService:AppointmentsService) {
+    console.log("visual");
+     
 
   }
+
+  ngOnInit() {
+    this.events = this.appointmentService.eventList;
+    // Suscríbete al Observable después de inicializar eventList
+    this.appointmentService.EventList.subscribe((events) => {
+      this.events = events; // Actualiza la propiedad local con la lista de eventos
+    });
+  }
+
+  
+  
+
+  
+
+  
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

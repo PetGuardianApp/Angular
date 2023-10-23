@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
+  OnInit,
 } from '@angular/core';
 import {
   startOfDay,
@@ -27,6 +28,9 @@ import {
 import { EventColor } from 'calendar-utils';
 import localeEn from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
+import { ApiService } from 'src/app/services/api.service';
+import { AppointmentsService } from 'src/app/services/appointments.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 registerLocaleData(localeEn);
 
@@ -51,7 +55,7 @@ const colors: Record<string, EventColor> = {
   templateUrl: './controller-appointments.component.html',
   styleUrls: ['./controller-appointments.component.css']
 })
-export class ControllerAppointmentsComponent {
+export class ControllerAppointmentsComponent implements OnInit {
 
   locale: string = "en"
 
@@ -72,63 +76,30 @@ export class ControllerAppointmentsComponent {
  
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: { ...colors['red'] },
-      allDay: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: { ...colors['yellow'] },
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: { ...colors['blue'] },
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: { ...colors['yellow'] },
-    },
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, private appointmentService:AppointmentsService) {
+    console.log("controller");
+    this.appointmentService.EventList.subscribe((events) =>{
+      this.events = events;
+      console.log(events)
+    })
+    
+      
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
+  }
+
+  ngOnInit() {
+    this.events = this.appointmentService.eventList;
+    // Suscríbete al Observable después de inicializar eventList
+    this.appointmentService.EventList.subscribe((events) => {
+      this.events = events; // Actualiza la propiedad local con la lista de eventos
+    });
   }
 
 
-
-
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
   
 
 }
