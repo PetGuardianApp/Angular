@@ -41,6 +41,14 @@
     <div class="image-container">
 
     </div>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <google-chart 
+    [type]="chartData.type" 
+    [data]="chartData.data" 
+    [columns]="chartData.columnNames" 
+    [options]="chartData.options" 
+    [width]="chartData.width"
+    [height]="chartData.height">
+      
+</google-chart>
 
 </div>

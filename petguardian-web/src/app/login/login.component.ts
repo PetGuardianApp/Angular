@@ -25,8 +25,8 @@ export class LoginComponent {
      private fireBaseErrorService: FirebaseErrorService, private toastr:ToastrService,private storageService:StorageService,
      private apiService:ApiService){
       this.loginUser = this.fb.group({
-        email: ['ramon@mail.com',[Validators.required, Validators.email]],
-        password: ['ramon@mail.com',Validators.required]
+        email: ['',[Validators.required, Validators.email]],
+        password: ['',Validators.required]
       })
 
 
