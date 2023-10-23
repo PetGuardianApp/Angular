@@ -9,6 +9,9 @@
 
 <div class="module">
     <h2>Recent clients</h2>
+    <div style="padding-left: 460px;" *ngIf="contentIsLoad">
+        <mat-spinner></mat-spinner>
+    </div>
     <table style="margin-right: -20px;">
         <tr>
             <th *ngFor="let item of clientsArray">
@@ -22,13 +25,13 @@
                             <ul>
                                 <li>Email: {{item.email}}</li>
                                 <li>Phone: {{item.phone}}</li>
-                              </ul>
+                            </ul>
                         </div>
                     </div>
                 </button>
-            </th>            
+            </th>
         </tr>
-    </table>   
+    </table>
     <br><br><br><br>
-    
+
 </div>
