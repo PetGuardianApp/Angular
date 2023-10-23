@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 import { environment } from '../enviroments/enviroments';
@@ -49,7 +49,6 @@ import { PetSinglePageComponent } from './pet-single-page/pet-single-page.compon
     HeaderComponent,
     ClientSinglePageComponent,
     PetSinglePageComponent,
-    
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),
@@ -64,6 +63,7 @@ import { PetSinglePageComponent } from './pet-single-page/pet-single-page.compon
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     BrowserModule,
+    NgApexchartsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

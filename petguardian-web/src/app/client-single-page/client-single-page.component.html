@@ -1,26 +1,26 @@
 <div>
-    <h1>John Doe</h1>
+    <h1>{{clientInfo.name}} {{clientInfo.surnames}}</h1>
 </div>
 <div class="module" style="column-count: 2;">
     <h2>Personal information</h2>
     <div class="info-container">
         <div style="column-count:  2;">
             <div>
-                <label for="clientName"><b>Name:</b></label>
-                <span id="clientName"> John</span><br>
+                <label><b>Name:</b></label>
+                <span> {{clientInfo.name}}</span><br>
 
-                <label for="clientSName"><b>Surname:</b></label>
-                <span id="clientSName"> Doe</span><br>
+                <label><b>Surname:</b></label>
+                <span> {{clientInfo.surnames}}</span><br>
 
-                <label for="clientPhone"><b>Phone:</b></label>
-                <span id="clientPhone"> 660322455</span><br>
+                <label><b>Phone:</b></label>
+                <span> {{clientInfo.phone}}</span><br>
             </div>
             <div>
-                <label for="clientMail"><b>Email:</b></label>
-                <span id="clientMail"> johndoe@mail.com</span><br>
+                <label><b>Email:</b></label>
+                <span> {{clientInfo.email}}</span><br>
 
-                <label for="clientPhone"><b>Address:</b></label>
-                <span id="clientPhone"> C/ Medellín n69, Albacete, 05423</span><br>
+                <label><b>Address:</b></label>
+                <span> C/ Medellín n69, Albacete, 05423</span><br>
             </div>
         </div>
 
@@ -40,22 +40,11 @@
 
 <div class="module">
     <h2>Pets</h2>
-    <div class="image-container" (click)="redirectPetPage($event)">
+    <div class="image-container" (click)="redirectPetPage(pet.id)" 
+    *ngFor="let pet of clientPets">
         <img src="/assets/img/dogImage1.jpg" alt="Pet">
         <div class="overlay">
-            <p>Tobby</p>
+            <p>{{pet.name}}</p>
         </div>
-    </div>
-    <div class="image-container" (click)="redirectPetPage($event)">
-        <img src="/assets/img/dogImage2.jpg" alt="Pet">
-        <div class="overlay">
-            <p>Rex</p>
-        </div>
-    </div>
-    <div class="image-container" (click)="redirectPetPage($event)">
-        <img src="/assets/img/dogImage3.jpg" alt="Pet">
-        <div class="overlay">
-            <p>Mierdón</p>
-        </div>
-    </div>
+    </div>    
 </div>

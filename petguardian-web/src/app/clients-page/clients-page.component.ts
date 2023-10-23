@@ -11,28 +11,18 @@ import { ClientModel } from '../models/client.model';
   styleUrls: ['./clients-page.component.css']
 })
 export class ClientsPageComponent {
+  public clientsArray: ClientModel[];
+
   constructor(private router: Router, private apiService: ApiService, private storageService: StorageService) {
     this.showData();
+    this.clientsArray = [];
   }
 
   showData() {
     var uid = this.storageService.SessionGetStorage("uid");
-    this.apiService.getClients(uid).then(function (clientsArray) {
-      const clientNameElement = document.getElementById("clientName1");
-      const client:ClientModel = clientsArray[0];
 
-      if (clientNameElement && client.name !== undefined) {
-        clientNameElement.innerHTML = client.name + " " +  client.surnames;
-      }
-
-      // CLient 2
-      const clientNameElement2 = document.getElementById("clientName2");
-      const client2:ClientModel = clientsArray[1];
-
-      if (clientNameElement2 && client2.name !== undefined) {
-        clientNameElement2.innerHTML = client2.name + " " +  client2.surnames;
-      }
-
+    this.apiService.getClients(uid).then((clientsArray) => {
+      this.clientsArray = clientsArray;
     });
   }
 
@@ -45,9 +35,9 @@ export class ClientsPageComponent {
     }
   }
 
-  redirectClientPage(event: Event) {
+  redirectClientPage(userId: string | undefined) {
     this.router.navigate(['clients/client'], {
-      queryParams: { uid: '' }
+      queryParams: { uid: userId }
     });
   }
 }

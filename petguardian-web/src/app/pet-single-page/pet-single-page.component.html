@@ -1,33 +1,32 @@
 <div>
-    <h1>Mierdón</h1>
+    <h1>{{petInfo.name}}</h1>
 </div>
 <div class="module" style="column-count: 2;">
     <h2>Personal information</h2>
     <div class="info-container">
         <div style="column-count:  2;">
             <div>
-                <label for="petName"><b>Name:</b></label>
-                <span id="petName"> Mierdón</span><br>
+                <label><b>Name:</b></label>
+                <span> {{petInfo.name}}</span><br>
 
-                <label for="petBirth"><b>Bith date:</b></label>
-                <span id="petBirth"> 17/10/2020</span><br>
+                <label><b>Bith date:</b></label>
+                <span> {{getBirth(petInfo.birth)}}</span><br>
 
                 <label for="petTypeBreed"><b>Type:</b></label>
-                <span id="petTypeBreed"> Dog, border collin</span><br>
+                <span id="petTypeBreed"> {{petInfo.type}}, {{petInfo.breed}}</span><br>
             </div>
             <div>
                 <label for="petWeight"><b>Weight:</b></label>
-                <span id="petWeight"> 200g</span><br>
+                <span id="petWeight"> {{getLatestWeight()}}g</span><br>
 
                 <label for="petHeight"><b>Height:</b></label>
-                <span id="petHeight"> 180cm</span><br>
+                <span id="petHeight"> {{petInfo.height}}cm</span><br>
             </div>
         </div>
 
         <div class="module" style="padding-right: 20px;">
             <h2>Pet resume</h2>
-            <p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et
-                condimentum purus, in tincidunt erat.
+            <p style="text-align: justify;">{{petInfo.health_info?.observations}}
             </p>
         </div>
     </div>
@@ -41,14 +40,9 @@
     <div class="image-container">
 
     </div>
-    <google-chart 
-    [type]="chartData.type" 
-    [data]="chartData.data" 
-    [columns]="chartData.columnNames" 
-    [options]="chartData.options" 
-    [width]="chartData.width"
-    [height]="chartData.height">
-      
-</google-chart>
+    <div id="chart_div">
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"></apx-chart>
+        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"></apx-chart>
+    </div>
 
 </div>
