@@ -31,6 +31,7 @@ import { registerLocaleData } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { PetModel } from 'src/app/models/pet.model';
 
 registerLocaleData(localeEn);
 
@@ -46,6 +47,10 @@ const colors: Record<string, EventColor> = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
+  },
+  green: {
+    primary: '#2D6F28',
+    secondary: '#2D6F28',
   },
 };
 
@@ -77,14 +82,15 @@ export class ControllerAppointmentsComponent implements OnInit {
   refresh = new Subject<void>();
 
   events: CalendarEvent[] = [];
+  pets: PetModel[] = [];
 
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, private appointmentService:AppointmentsService) {
-    console.log("controller");
-    this.appointmentService.EventList.subscribe((events) =>{
-      this.events = events;
-      console.log(events)
+  
+
+    this.apiService.getAllPets().then(data => {
+      this.pets = data;
     })
     
       
@@ -93,13 +99,37 @@ export class ControllerAppointmentsComponent implements OnInit {
 
   ngOnInit() {
     this.events = this.appointmentService.eventList;
+    console.log(this.events)
     // Suscríbete al Observable después de inicializar eventList
     this.appointmentService.EventList.subscribe((events) => {
       this.events = events; // Actualiza la propiedad local con la lista de eventos
     });
   }
 
+  addEvent(): void {
+    var temp = {
+      title: '',
+      start: startOfDay(new Date()),
+      end: endOfDay(new Date()),
+      color: colors['green'],
+    }
+    this.events = [
+      ...this.events,temp,
+      
+    ];
+    
+  }
 
-  
+  save(){
+    this.appointmentService.eventList = [];
+    this.events.forEach(event => {
+      this.appointmentService.addEvent(event);
+    })
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter((event) => event !== eventToDelete);
+    this.save()
+  }
 
 }

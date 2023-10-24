@@ -1,9 +1,9 @@
 <h3>
     <strong>Edit Appointments</strong>
-    <button class="button-84-normal float-end" >
+    <button class="button-84-normal float-end" (click)="addEvent()">
       Add new
     </button>
-    <button class="button-84-success float-end" style="margin-right: 10px;" >
+    <button class="button-84-success float-end" style="margin-right: 10px;" (click)="save()" >
       Save
     </button>
     <div class="clearfix"></div>
@@ -23,12 +23,15 @@
       <tbody>
         <tr *ngFor="let event of events">
           <td>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="event.title"
-              (keyup)="refresh.next()"
-            />
+            
+              <mat-select [(value)]="event.title">
+                <mat-option
+                  *ngFor="let pet of pets"
+                  [value]="pet.name">
+                  {{ pet.name }}
+                </mat-option>
+              </mat-select>
+            
           </td>
           <td>
             <input
@@ -61,17 +64,9 @@
               placeholder="Not set"
             />
           </td>
-          <td>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="event.title"
-              (keyup)="refresh.next()"
-            />
-          </td>
           
           <td>
-            <button class="button-84-failure"  >
+            <button class="button-84-failure" (click)="deleteEvent(event)"  >
               Delete
             </button>
           </td>

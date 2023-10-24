@@ -14,6 +14,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 
 import { environment } from '../enviroments/enviroments';
@@ -65,6 +66,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    MatSelectModule,
     BrowserModule,
     NgApexchartsModule,
     MatProgressSpinnerModule,

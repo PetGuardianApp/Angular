@@ -86,4 +86,18 @@ export class ApiService {
     });
   }
 
+  getAllPets(): Promise<PetModel[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<PetModel[]>(this.apiUrl + '/pet/all')
+        .subscribe(
+          (response: PetModel[]) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
 }
