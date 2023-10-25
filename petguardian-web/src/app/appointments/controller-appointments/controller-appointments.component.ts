@@ -63,6 +63,7 @@ const colors: Record<string, EventColor> = {
 export class ControllerAppointmentsComponent implements OnInit {
 
   locale: string = "en"
+  public selectedValue:string =""
 
   @ViewChild('modalContent', { static: true })
   modalContent!: TemplateRef<any>;
@@ -86,6 +87,7 @@ export class ControllerAppointmentsComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
+
   constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, private appointmentService:AppointmentsService) {
   
 
@@ -106,15 +108,20 @@ export class ControllerAppointmentsComponent implements OnInit {
     });
   }
 
+  handleSelectChange(event: any): void {
+    this.selectedValue = event.value; // Actualiza selectedValue con el valor seleccionado
+  }
+
   addEvent(): void {
-    var temp = {
-      title: '',
+
+    this.events = [
+      ...this.events,{title: '',
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
       color: colors['green'],
-    }
-    this.events = [
-      ...this.events,temp,
+      pet_id: this.selectedValue,
+    
+    },
       
     ];
     
@@ -123,13 +130,28 @@ export class ControllerAppointmentsComponent implements OnInit {
   save(){
     this.appointmentService.eventList = [];
     this.events.forEach(event => {
+      if(event.title==''){
+        this.pets.forEach(element => {
+          if(element.id == event.pet_id){
+            
+              event.title = element.name!
+              
+            
+          }
+        })
+      }else {
+        const temp = this.pets.find((pet) => pet.id == event.pet_id)
+        console.log(event.title != temp?.name)
+        if(event.title != temp?.name){
+          event.title = temp?.name!;
+        }
+      }
       this.appointmentService.addEvent(event);
     })
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-    this.save()
+    this.appointmentService.deleteEvent(eventToDelete);
   }
 
 }

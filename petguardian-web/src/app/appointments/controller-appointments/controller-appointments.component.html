@@ -16,7 +16,7 @@
           <th>Name</th>
           <th>Begins</th>
           <th>Ends</th>
-          <th>Pet</th>
+          <th>Delete</th>
         </tr>
       </thead>
   
@@ -24,10 +24,10 @@
         <tr *ngFor="let event of events">
           <td>
             
-              <mat-select [(value)]="event.title">
-                <mat-option
+              <mat-select [(value)]="event.pet_id" (selectionChange)="handleSelectChange($event)" >
+                <mat-option id="option"
                   *ngFor="let pet of pets"
-                  [value]="pet.name">
+                  [value]="pet.id">
                   {{ pet.name }}
                 </mat-option>
               </mat-select>

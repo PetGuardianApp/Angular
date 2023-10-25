@@ -57,7 +57,8 @@ export class AppointmentsService {
         this.addEvent({
           start: this.parseDateFromString(element.start_date!)!,
           end: this.parseDateFromString(element.end_date!)!,
-          title: "Bobby",
+          title: "Toby",
+          pet_id:element.pet_id,
           color: { ...colors[color] },
         })
       })
@@ -92,6 +93,11 @@ export class AppointmentsService {
 
   public addEvent(event: CalendarEvent) {
     this.eventList.push(event);
+    this.eventListSubject.next(this.eventList);
+  }
+
+  public deleteEvent(event: CalendarEvent) {
+    this.eventList = this.eventList.filter((events) => events !== event);
     this.eventListSubject.next(this.eventList);
   }
 

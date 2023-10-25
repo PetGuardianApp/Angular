@@ -29,6 +29,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppointmentModel } from 'src/app/models/appointment.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
+import { Router } from '@angular/router';
 
 registerLocaleData(localeEn);
 
@@ -88,7 +89,8 @@ export class VisualAppointmentsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, private appointmentService:AppointmentsService) {
+  constructor(private modal: NgbModal,private storageService:StorageService, private apiService:ApiService, 
+    private appointmentService:AppointmentsService, private router:Router) {
     console.log("visual");
      
 
@@ -107,7 +109,11 @@ export class VisualAppointmentsComponent {
 
   
 
-  
+  eventClicked({ event }: { event: CalendarEvent }): void {
+    this.router.navigate(['clients/pet'], {
+      queryParams: { petId:event.pet_id }
+    });
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
