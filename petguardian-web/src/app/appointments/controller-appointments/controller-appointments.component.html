@@ -21,11 +21,11 @@
       </thead>
   
       <tbody>
-        <tr *ngFor="let event of events">
+        <tr *ngFor="let event of events" style="width: 200%;">
           <td>
             
               <mat-select [(value)]="event.pet_id" (selectionChange)="handleSelectChange($event)" >
-                <mat-option id="option"
+                <mat-option
                   *ngFor="let pet of pets"
                   [value]="pet.id">
                   {{ pet.name }}
