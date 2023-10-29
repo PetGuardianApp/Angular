@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  redirectClientPage(id: string) {
+  constructor(private router: Router, private apiService: ApiService) {
+  }
 
+  redirectClientPage(id: string) {
+    this.router.navigate(['clients/pet'], {
+      queryParams: { petId: id }
+    });
   }
 }

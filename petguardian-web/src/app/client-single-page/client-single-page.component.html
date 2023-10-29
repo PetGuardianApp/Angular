@@ -26,15 +26,12 @@
 
         <div class="module" style="padding-right: 20px;">
             <h2>Client resume</h2>
-            <p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et
-                condimentum purus, in tincidunt erat. <br><br>
-
-                Sed in suscipit dui. Nulla scelerisque, orci vitae volutpat tincidunt, lectus magna suscipit mauris.
+            <p style="text-align: justify;">{{clientInfo.resume}}
             </p>
         </div>
     </div>
     <div>
-        <img src="/assets/img/userProfileImage.jpg" style="width: 400px;">
+        <img src="{{clientInfo.photoSrc}}" style="width: 400px;" height="300px">
     </div>
 </div>
 
@@ -42,7 +39,7 @@
     <h2>Pets</h2>
     <div class="image-container" (click)="redirectPetPage(pet.id)" 
     *ngFor="let pet of clientPets">
-        <img src="/assets/img/dogImage1.jpg" alt="Pet">
+        <img src="{{pet.profile_image}}" alt="Pet">
         <div class="overlay">
             <p>{{pet.name}}</p>
         </div>

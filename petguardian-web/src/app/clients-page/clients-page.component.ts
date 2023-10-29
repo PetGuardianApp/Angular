@@ -27,6 +27,9 @@ export class ClientsPageComponent {
     this.apiService.getClients(uid).then((clientsArray) => {
       this.clientsArray = clientsArray;
       this.contentIsLoad = false;
+
+      clientsArray[0].photoSrc = "/assets/img/userProfileImage.jpg";
+      clientsArray[1].photoSrc = "/assets/img/usrProfImage2.jpg";
     });
   }
 

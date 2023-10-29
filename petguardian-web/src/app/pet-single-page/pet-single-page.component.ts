@@ -33,11 +33,11 @@ export class PetSinglePageComponent {
     series: [
       {
         name: "Cardiac Frequency",
-        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        data: [70, 75, 80, 74, 84, 90, 75, 70, 80, 91, 92, 93, 64, 75, 86, 77, 98, 109, 60]
       },
       {
         name: "Steps",
-        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        data: [300, 200, 100, 290, 500, 400, 211, 314, 194, 211, 112, 323, 414, 125, 376, 517, 238, 419, 310]
       }
     ],
     chart: {
@@ -71,7 +71,7 @@ export class PetSinglePageComponent {
       }
     },
     fill: {
-      opacity: 1
+      opacity: 1,
     },
     tooltip: {
       y: {
@@ -86,15 +86,15 @@ export class PetSinglePageComponent {
     series: [
       {
         name: "Weight",
-        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        data: [90, 91, 90, 93, 94, 90, 95, 98, 100, 98, 97]
       },
       {
         name: "Height",
-        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        data: [100, 100, 100, 105, 105, 105, 105, 105, 110, 110, 110]
       }
     ],
     chart: {
-      type: "bar",
+      type: "line",
       height: 350
     },
     dataLabels: {
@@ -146,23 +146,13 @@ export class PetSinglePageComponent {
     if (petId != null) {
       this.apiService.getPet(petId).then((petData) => {
         this.petInfo = petData;
-
-        console.log(petData);
-
-        // Mostrar cardaiac freq
-        this.drawCardiacFreqChart();
-      });
-    }
-  }
-
-  drawCardiacFreqChart() {
-    // Procesar los datos de cardiac_freq
-    const cardiacFreqData = this.petInfo.health_info?.cardiac_freq;
-    if (cardiacFreqData != undefined) {
-      // Convertir las claves de las fechas a un formato adecuado para Highcharts
-      const series = Object.keys(cardiacFreqData).map((date) => {
-        const value = parseFloat(cardiacFreqData[date]);
-        return [new Date(date).getTime(), value];
+        if (petData.name == "Toby") {
+          petData.profile_image = "/assets/img/dogImage1.jpg";
+        } else if (petData.name == "Dobby") {
+          petData.profile_image = "/assets/img/dogImage2.jpg";
+        } else if (petData.name == "Darwin") {
+          petData.profile_image = "/assets/img/catImage.avif";
+        }
       });
     }
   }

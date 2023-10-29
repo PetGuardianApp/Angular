@@ -5,4 +5,6 @@ export class ClientModel {
     name?:string;
     phone?:number;
     surnames?:string;
+    photoSrc?:string;
+    resume?:string;
   }

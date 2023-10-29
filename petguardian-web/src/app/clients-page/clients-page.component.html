@@ -17,8 +17,8 @@
             <th *ngFor="let item of clientsArray">
                 <button class="whiteButton" id="{{item.id}}" (click)="redirectClientPage(item.id)">
                     <div style="column-count: 2;">
-                        <div>
-                            <img src="/assets/img/userProfileImage.jpg" style="width: 200px;">
+                        <div> 
+                            <img src="{{item.photoSrc}}" style="width: 200px;" height="150">
                         </div>
                         <div style="text-align: left;">
                             <p style="font-weight: bold;">{{item.name}} {{item.surnames}}</p>

@@ -24,16 +24,34 @@ export class ClientSinglePageComponent {
     if (uid != null) {
       this.apiService.getSingleClient(uid).then((clientData) => {
         this.clientInfo = clientData;
+
+        if (clientData.name == "Alejandra") {
+          clientData.photoSrc = "/assets/img/usrProfImage2.jpg";
+          clientData.resume = "An animal lover with an unconditional love for my four-legged pet. Over the years, I have had the privilege of sharing my life with dogs, cats, birds, and other adorable companions.    "
+        } else {
+          clientData.photoSrc = "/assets/img/userProfileImage.jpg";
+          clientData.resume = "An animal lover with an unconditional love for my four-legged pets. Over the years, I have had the privilege of sharing my life with dogs, cats, birds, and other adorable companions."
+        }
       });
       this.apiService.getClientPets(uid).then((pets) => {
         this.clientPets = pets;
+
+        for (let i = 0; i < pets.length; i++) {
+          if (pets[i].name == "Toby") {
+            pets[i].profile_image = "/assets/img/dogImage1.jpg";
+          } else if (pets[i].name == "Dobby") {
+            pets[i].profile_image = "/assets/img/dogImage2.jpg";
+          } else if (pets[i].name == "Darwin") {
+            pets[i].profile_image = "/assets/img/catImage.avif";
+          }
+        }
       });
     }
   }
 
   redirectPetPage(userId: string | undefined) {
     this.router.navigate(['clients/pet'], {
-      queryParams: { petId:userId }
+      queryParams: { petId: userId }
     });
   }
 }
