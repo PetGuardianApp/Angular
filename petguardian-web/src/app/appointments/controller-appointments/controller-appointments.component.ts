@@ -141,7 +141,7 @@ export class ControllerAppointmentsComponent implements OnInit {
         })
       }else {
         const temp = this.pets.find((pet) => pet.id == event.pet_id)
-        console.log(event.title != temp?.name)
+        
         if(event.title != temp?.name){
           event.title = temp?.name!;
         }
