@@ -1,5 +1,5 @@
 <h1>
-    Welcome Ramon Rosales
+    Welcome {{vet.name}}
 </h1>
 <h2>Great to have you here!</h2>
 <div><app-visual-appointments></app-visual-appointments></div>
@@ -7,62 +7,33 @@
 <h2 style="margin-top: 100px;">
     Today's visits
 </h2>
-
-<table style="margin-right: -20px;">
-    <tr>
-        <th>
-            <button class="whiteButton" (click)="redirectClientPage('HtvrlxCnJsSXVkUcgkFG')">
+<ng-container *ngIf="isTodayVisits.length > 0; then thenBlock else elseBlock">
+</ng-container>
+<ng-template #thenBlock>
+    <div *ngFor="let visit of clientAppointments">
+        <ng-container *ngIf="isTodayVisit(visit.end_date || ''); then thenBlock ">
+        </ng-container>
+        <ng-template #thenBlock>
+            <button class="whiteButton" id="{{visit.id}}" (click)="redirectVisitPage(visit.id || '')">
                 <div style="column-count: 2;">
                     <div>
-                        <img src="/assets/img/dogImage2.jpg" style="width: 200px;" height="199.5px">
+                        <img src="{{VisitPet.profile_image}}" style="width: 70%;">
                     </div>
                     <div style="text-align: left;">
-                        <p style="font-weight: bold;">Dobby</p>
                         <ul>
-                            <li><b>Matter:</b> Dobby has a strange growth</li>
-                            <li><b>Observations:</b> Artritis</li>
+                            <li><b>Pet:</b> {{VisitPet.name}}</li>
+                            <li><b>Start:</b> {{formatStartDate(visit.start_date || '')}}</li>
+                            <li><b>End:</b> {{formatStartDate(visit.end_date || '')}}</li>
+
                         </ul>
                     </div>
                 </div>
             </button>
-        </th>
-
-        <th>
-            <button class="whiteButton" (click)="redirectClientPage('CL7E6IRjyJgOzaLxCV8O')">
-                <div style="column-count: 2;">
-                    <div>
-                        <img src="/assets/img/dogImage1.jpg" style="width: 200px;">
-                    </div>
-                    <div style="text-align: left;">
-                        <p style="font-weight: bold;">Tobby</p>
-                        <ul>
-                            <li><b>Matter:</b> Tobby routinary check</li>
-                            <li><b>Observations:</b> none</li>
-                        </ul>
-                    </div>
-                </div>
-            </button>
-        </th>
-    </tr>
-</table>
-
-<table style="margin-right: -20px; margin-top: 20px;">
-    <tr>
-        <th>
-            <button class="whiteButton" (click)="redirectClientPage('KMbT71hK87FAiQcgK4yo')">
-                <div style="column-count: 2;">
-                    <div>
-                        <img src="/assets/img/catImage.avif" style="width: 200px;">
-                    </div>
-                    <div style="text-align: left;">
-                        <p style="font-weight: bold;">Darwin</p>
-                        <ul>
-                            <li><b>Matter:</b> Darwin has reuma</li>
-                            <li><b>Observations:</b> Old cat</li>
-                        </ul>
-                    </div>
-                </div>
-            </button>
-        </th>
-    </tr>
-</table>
+        </ng-template>
+    </div>
+</ng-template>
+<ng-template #elseBlock>
+    <div>
+        <p> No visits for today</p>
+    </div>
+</ng-template>

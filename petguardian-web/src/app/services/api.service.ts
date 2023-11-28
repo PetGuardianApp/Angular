@@ -5,6 +5,7 @@ import { AppointmentModel } from '../models/appointment.model';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 import { PetModel } from '../models/pet.model';
+import { VetModel } from '../models/vet.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,20 @@ export class ApiService {
   private temp!: Observable<ClientModel[]>;
   constructor(private http: HttpClient, private storageService: StorageService) {
 
+  }
+
+  getVet(uid : string): Promise<VetModel>{
+    return new Promise((resolve, reject) => {
+      this.http.get<VetModel>(this.apiUrl + '/vet/find/' + uid)
+        .subscribe(
+          (response: VetModel) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
   }
 
   getAppointments(uid: string): Promise<AppointmentModel[]> {
