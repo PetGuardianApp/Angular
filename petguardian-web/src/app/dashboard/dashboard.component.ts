@@ -15,20 +15,19 @@ import { VetModel } from '../models/vet.model';
 export class DashboardComponent implements OnInit {
   contentIsLoading: boolean = true;
 
-  constructor(private router: Router, private apiService: ApiService,private storageService: StorageService) {
+  constructor(private router: Router, private apiService: ApiService, private storageService: StorageService) {
     this.showData();
     this.vet = new VetModel;
     this.petsArray = [];
-    this.clientAppointments = []; 
+    this.vetAppointments = [];
     this.ifvisit = false;
     this.isTodayVisits = [];
     this.VisitPet = new PetModel;
-
   }
   currentDate: Date = new Date();
   public vet: VetModel;
   public petsArray: PetModel[];
-  public clientAppointments: AppointmentModel[];
+  public vetAppointments: AppointmentModel[];
   public ifvisit: Boolean;
   public isTodayVisits: string[];
   public VisitPet: PetModel;
@@ -97,37 +96,34 @@ export class DashboardComponent implements OnInit {
     });
   }
   showData() {
-    
+
     this.apiService.getVet(this.storageService.SessionGetStorage("uid")).then((vet) => {
       this.vet = vet;
     });
 
-    this.apiService.getAppointments(this.storageService.SessionGetStorage("uid")).then((clientAppointments) => {
-      this.clientAppointments = clientAppointments;
+    this.apiService.getAppointments(this.storageService.SessionGetStorage("uid")).then((vetAppointments) => {
+      this.vetAppointments = vetAppointments;
       let today_visit: Boolean = false;
-      for (const element of this.clientAppointments) {
+      for (const element of this.vetAppointments) {
         this.apiService.getPet(element.pet_id || '').then((pet) => {
           this.VisitPet = pet;
+          this.petsArray.push(pet);
           if (this.VisitPet.profile_image == '') {
             this.VisitPet.profile_image = '/assets/img/logo_default.svg';
-          } else{
+          } else {
             if (this.VisitPet.name == "Toby") {
               this.VisitPet.profile_image = "/assets/img/dogImage1.jpg";
             } else if (this.VisitPet.name == "Dobby") {
               this.VisitPet.profile_image = "/assets/img/dogImage2.jpg";
             } else if (this.VisitPet.name == "Darwin") {
               this.VisitPet.profile_image = "/assets/img/catImage.avif";
-            }           
+            }
           }
         })
         if (today_visit = this.isTodayVisit(element.end_date || '')) {
           this.isTodayVisits.push(element.end_date || '');
         }
       }
-    })
-
-
-
-
+    });
   }
 }

@@ -4,29 +4,31 @@
 <h2>Great to have you here!</h2>
 <div><app-visual-appointments></app-visual-appointments></div>
 
-<h2 style="margin-top: 100px;">
+<h2 style="margin-top: 25px;">
     Today's visits
 </h2>
-<ng-container *ngIf="isTodayVisits.length > 0; then thenBlock else elseBlock">
-</ng-container>
+<ng-container *ngIf="isTodayVisits.length > 0; then thenBlock else elseBlock"></ng-container>
 <ng-template #thenBlock>
-    <div *ngFor="let visit of clientAppointments">
+    <div *ngFor="let visit of vetAppointments" style="margin-top: 10px;">
         <ng-container *ngIf="isTodayVisit(visit.end_date || ''); then thenBlock ">
         </ng-container>
         <ng-template #thenBlock>
             <button class="whiteButton" id="{{visit.id}}" (click)="redirectVisitPage(visit.id || '')">
-                <div style="column-count: 2;">
-                    <div>
-                        <img src="{{VisitPet.profile_image}}" style="width: 70%;">
+                <div style="column-count: 2;" *ngFor="let pet of petsArray" >
+                    <ng-container *ngIf=" pet.id == visit.pet_id then thenBlock "></ng-container>
+                    <ng-template #thenBlock>
+                    <div >
+                        <img src="{{pet.profile_image}}" style="width: 70%;">
                     </div>
                     <div style="text-align: left;">
                         <ul>
-                            <li><b>Pet:</b> {{VisitPet.name}}</li>
+                            <li><b>Pet:</b> {{pet.name}}</li>
+                            <li><b>Matter:</b> {{visit.matter}}</li>
                             <li><b>Start:</b> {{formatStartDate(visit.start_date || '')}}</li>
                             <li><b>End:</b> {{formatStartDate(visit.end_date || '')}}</li>
-
                         </ul>
                     </div>
+                </ng-template>
                 </div>
             </button>
         </ng-template>
