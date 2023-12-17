@@ -1,0 +1,9 @@
+<h1>Chat list</h1>
+<div *ngFor="let client of clients" class="module" style="text-align: center;">
+    <div class="image-container" (click)="redirectPetPage(client.id || '')" id="{{client.id}}" >
+        <img src="/assets/img/logo_default.svg" alt="vets" width="100%">
+        <div class="overlay">
+            <p>{{client.name}}</p>
+        </div>
+    </div>
+</div>
