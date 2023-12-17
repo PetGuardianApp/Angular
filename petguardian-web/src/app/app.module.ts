@@ -36,6 +36,8 @@ import { HeaderComponent } from './header/header.component';
 import { ClientSinglePageComponent } from './client-single-page/client-single-page.component';
 import { PetSinglePageComponent } from './pet-single-page/pet-single-page.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ChatListComponent } from './components/chat-list/chat-list.component';
+import { ChatPageComponent } from './components/chat-page/chat-page.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     ClientSinglePageComponent,
     PetSinglePageComponent,
     LoadingSpinnerComponent,
+    ChatListComponent,
+    ChatPageComponent,
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),
